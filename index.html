@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice Assistant Girl</title>
+  <style>
+body {
+  margin: 0; /* Remove default margin */
+  min-height: 100vh; /* Full viewport height */
+  font-family: 'Segoe UI', sans-serif;
+
+  /* Background image */
+  background-image: url('https://static.vecteezy.com/system/resources/previews/012/910/317/original/graphic-illustration-design-of-male-teacher-theme-background-teaching-with-empty-area-free-vector.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* Fixed background on scroll */
+
+  /* Flexbox to center content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+    .main-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 20px;
+    }
+
+    /* Portrait */
+    .girl-portrait {
+      position: relative;
+      width: 300px;
+      height: 550px;
+      flex-shrink: 0;
+    }
+    .hair {
+      position: absolute;
+      width: 280px;
+      height: 480px;
+      background: linear-gradient(to bottom, #1f1f1f, #2c2c2c);
+      border-radius: 150px 150px 80px 80px;
+      top: -10px;
+      left: 10px;
+      z-index: -2;
+    }
+    .face {
+      position: absolute;
+      width: 160px;
+      height: 200px;
+      top: 90px;
+      left: 70px;
+      background: #fddac7;
+      border-radius: 50% 50% 45% 45%;
+      z-index: 1;
+    }
+    .neck {
+      position: absolute;
+      width: 70px;
+      height: 90px;
+      top: 270px;
+      left: 115px;
+      background: #fddac7;
+      border-radius: 20px;
+    }
+    .shoulders {
+      position: absolute;
+      width: 280px;
+      height: 150px;
+      top: 350px;
+      left: 10px;
+      background: #ff9aa2;
+      border-radius: 80px 80px 0 0;
+      z-index: -1;
+    }
+
+    .eyebrow {
+      position: absolute;
+      width: 50px;
+      height: 8px;
+      background: #2b2b2b;
+      border-radius: 50%;
+      top: 35px;
+    }
+    .eyebrow.left { left: 18px; transform: rotate(-8deg); }
+    .eyebrow.right { right: 18px; transform: rotate(8deg); }
+
+    .eye {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: #fff;
+      border: 2px solid #333;
+      border-radius: 50%;
+      top: 65px;
+      overflow: hidden;
+      animation: blink 5s infinite;
+    }
+    .eye.left { left: 15px; }
+    .eye.right { right: 15px; }
+
+    .iris {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      top: 12px;
+      left: 12px;
+      background: radial-gradient(circle at 50% 50%, #6ec1ff, #0077c9, #002244);
+      border-radius: 50%;
+    }
+    .pupil {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      top: 9px;
+      left: 9px;
+      background: #000;
+      border-radius: 50%;
+    }
+    .nose {
+      position: absolute;
+      width: 18px;
+      height: 14px;
+      top: 115px;
+      left: 71px;
+      background: #fbbfa4;
+      border-radius: 50%;
+    }
+    .mouth {
+      position: absolute;
+      width: 70px;
+      height: 35px;
+      top: 155px;
+      left: 45px;
+      border-radius: 25% / 50%;
+      background: #a36d77;
+    }
+    .mouth.talking {
+      animation: talk 0.3s infinite alternate;
+    }
+    .cheek {
+      position: absolute;
+      width: 35px;
+      height: 25px;
+      background: #ffb6c1;
+      border-radius: 50%;
+      top: 130px;
+      opacity: 0.6;
+    }
+    .cheek.left { left: 20px; }
+    .cheek.right { right: 20px; }
+
+    @keyframes blink {
+      0%, 92%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.1); }
+    }
+    @keyframes talk {
+      from { transform: scaleY(0.4); }
+      to   { transform: scaleY(1); }
+    }
+
+    /* Chat */
+    .assistant-container {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 30px;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .chat-box {
+      border: 1px solid #ddd;
+      height: 250px;
+      padding: 15px;
+      overflow-y: auto;
+      border-radius: 10px;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .chat-box div {
+      padding: 8px 12px;
+      border-radius: 12px;
+      word-wrap: break-word;
+    }
+    .chat-box .user { align-self: flex-end; background: #fff0f5; }
+    .chat-box .bot { align-self: flex-start; background: #e6f3ff; }
+
+    .input-group {
+      display: flex;
+      gap: 10px;
+    }
+    .input-group input {
+      flex-grow: 1;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .input-group button {
+      padding: 12px 18px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Portrait -->
+    <div class="girl-portrait">
+      <div class="hair"></div>
+      <div class="face">
+        <div class="eyebrow left"></div>
+        <div class="eyebrow right"></div>
+        <div class="eye left"><div class="iris"><div class="pupil"></div></div></div>
+        <div class="eye right"><div class="iris"><div class="pupil"></div></div></div>
+        <div class="nose"></div>
+        <div class="mouth" id="mouth"></div>
+        <div class="cheek left"></div>
+        <div class="cheek right"></div>
+      </div>
+      <div class="neck"></div>
+      <div class="shoulders"></div>
+    </div>
+
+    <!-- Assistant -->
+    <div class="assistant-container">
+      <h2>AI Voice Assistant</h2>
+      <div class="chat-box" id="messages"></div>
+      <div class="input-group">
+        <input type="text" id="userInput" placeholder="Say or type something..." onkeypress="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+        <button onclick="startListening()">🎤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mouth = document.getElementById("mouth");
+    const synth = window.speechSynthesis;
+    const messagesContainer = document.getElementById("messages");
+
+    function speak(text) {
+      if (!("speechSynthesis" in window)) return alert("Speech not supported.");
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = 1;
+      utter.pitch = 1.2;
+      utter.onstart = () => mouth.classList.add("talking");
+      utter.onend = () => mouth.classList.remove("talking");
+      synth.cancel();
+      synth.speak(utter);
+    }
+
+    function addMessage(msg, sender) {
+      const div = document.createElement("div");
+      div.textContent = msg;
+      div.className = sender;
+      messagesContainer.appendChild(div);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage(": " + text, "user");
+      respondToUser(text);
+      input.value = "";
+    }
+
+    function startListening() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) return alert("Speech recognition not supported.");
+      const recog = new SR();
+      recog.lang = "en-US";
+      recog.start();
+      recog.onresult = e => {
+        const userText = e.results[0][0].transcript;
+        addMessage(": " + userText, "user");
+        respondToUser(userText);
+      };
+    }
+
+  const responses = {
+    "hello": "Hi there! How are you?",
+    "name": "I am your AI assistant.",
+    "how are you": "I'm just a bunch of code, but thanks for asking!",
+    
+    // SSGMCE General
+    "ssgmce full form": "SSGMCE stands for Shri Sant Gajanan Maharaj College of Engineering.",
+    "ssgmce location": "SSGMCE is located in Shegaon, Maharashtra, India.",
+    "ssgmce established": "The college was established in 1983.",
+    "ssgmce affiliation": "The college is affiliated to Sant Gadge Baba Amravati University (SGBAU).",
+    "ssgmce approval": "It is approved by AICTE and accredited with NAAC (Grade A) and NBA.",
+    "ssgmce trust": "The institute is managed by Shri Gajanan Shikshan Sanstha under the Temple Trust.",
+    "ssgmce programs": "It offers B.Tech, M.Tech, and MBA programs.",
+    "ssgmce ug": "Undergraduate programs include Mechanical, CSE, IT, Electrical, Power, and E&TC.",
+    "ssgmce pg": "Postgraduate programs include M.Tech in Mechanical, Electrical, Electronics & CS.",
+    "ssgmce mba": "SSGMCE has a Department of Business Administration & Research offering MBA.",
+    "ssgmce students": "The college has over 4100 students enrolled.",
+    "ssgmce faculty": "More than 200 qualified faculty members are part of the institution.",
+    
+    // Hostels
+    "ssgmce hostel vivekananda": "Swami Vivekananda Hostel: Boys, 125 rooms, triple seated.",
+    "ssgmce hostel dnyaneshwar": "Sant Dnyaneshwar Hostel: Boys, 48 rooms, double seated.",
+    "ssgmce hostel shankaracharya": "Shankaracharya Hostel: Boys, 83 rooms, double seated.",
+    
+    // Staff
+    "principal": "The Principal of SSGMCE is Dr. S. B. Somani.",
+    "dean academics": "Prof. D. L. Bhombe is the Dean of Academics at SSGMCE.",
+    "dean exams": "Prof. V. M. Umale is the Dean of Exams at SSGMCE.",
+    "hod electrical": "Dr. S. R. Paraskar is the Head of Electrical & Power Engineering Department.",
+    "hod extc": "Dr. M. N. Tibadewal is the Head of Electronics & Telecommunication Engineering Department.",
+    "hod mechanical": "Dr. S. P. Trikal is the Head of Mechanical Engineering Department.",
+    "hod cse": "Dr. S. B. Patil is the Head of Computer Science & Engineering Department.",
+    "hod it": "Prof. A. S. Manekar is the Head of Information Technology Department.",
+    "hod science": "Dr. N. A. Patil is the Head of Science & Humanities Department.",
+    "hod mba": "Dr. H. M. Jha is the Head of MBA Department.",
+    "registrar": "Prof. A. V. Patil is the Registrar of SSGMCE.",
+    "tpo": "Prof. Adesh Solanke is the Training & Placement Officer.",
+    "assistant tpo": "Mrs. H. S. Patil is the Assistant Training & Placement Officer.",
+    "chief warden": "Dr. R. M. Kharate is the Chief Warden.",
+    "assistant warden": "Prof. S. V. Bhagat is the Assistant Chief Warden.",
+    "librarian": "Mr. D. P. Patil is the Librarian at SSGMCE.",
+
+    // Facilities
+    "library": "The Central Library has over 65,000 books, journals, and digital resources.",
+    "labs": "Each department has well-equipped laboratories for practical learning.",
+    "auditorium": "SSGMCE has a large auditorium for events and seminars.",
+    "sports": "The campus provides facilities for indoor and outdoor sports.",
+    "canteen": "The canteen provides hygienic food at affordable rates.",
+    "medical": "The campus has a health center with doctors available.",
+    "wifi": "The entire campus is Wi-Fi enabled.",
+    "gym": "The campus has a well-equipped gymnasium for students.",
+    "atm": "An ATM facility is available inside the campus.",
+    "bank": "Banking facility is available on campus for students and staff.",
+    "temple": "The famous Gajanan Maharaj Temple is near the college.",
+    "stationery": "Stationery and printing shops are available within campus.",
+    "cafeteria": "A cafeteria serves snacks and fast food to students.",
+    
+    // Events & Activities
+    "fest udaan": "UDAAN is the annual cultural and technical festival.",
+    "hackathon": "Students participate in Smart India Hackathon and other events.",
+    "annual day": "Annual Day celebrates academic and cultural achievements.",
+    "blood donation": "Blood donation camps are organized regularly.",
+    "tree plantation": "Tree plantation drives promote green campus initiatives.",
+    "cleanliness": "Cleanliness drives are held under Swachh Bharat Mission.",
+    "alumni meet": "Alumni Meet connects past and present students.",
+
+    // Default
+    "default": "Sorry, I can only answer basic questions for now."
+  };
+
+  function respondToUser(input) {
+    input = input.toLowerCase();
+    let response = responses[input] || responses["default"];
+    addMessage(": " + response, "bot");
+    speak(response);
+  }
+
+  window.onload = () => {
+    const welcome = "Hi! I am your AI Assistant. You can talk to me or type in the box.";
+    addMessage(": " + welcome, "bot");
+    speak(welcome);
+  };
+</script>
+
+</body>
+</html>
